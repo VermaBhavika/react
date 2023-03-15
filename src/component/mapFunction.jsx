@@ -1,43 +1,30 @@
 import { React, useEffect, useState } from 'react';
 export function MapFunction () {
-    const [getData, setGetData] = useState();
-    const fetchData = () =>{
-        return fetch('https://random-data-api.com/api/v2/users?size=5&is_xml=true')
-            .then((response) => response.json())
-            .then((data) => {
-                setGetData(data)
-            })
+    const imgs=[
+        { id: 0, image:"https://thumbs.dreamstime.com/b/yellow-crash-test-dummy-yellow-crash-test-dummy-car-seat-116968697.jpg"},    
+        { id: 1, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy7BEpED5EP8FrXCc5Ntnw0a6_XL5tj51Uq1mWg5vDOQ&s"},    
+        { id: 2, image:"https://stylecaster.com/wp-content/uploads/2022/12/Emily-the-Criminal-2.jpg"},     
+    ]
+    const [sliderData, setSliderData] = useState(imgs[0])
+
+    const handleClick = (index) => {
+        console.log(index)
+        const slider = imgs[index]
+        setSliderData(slider)
     }
-    console.log(getData)
-    useEffect(() => {
-        fetchData();
-    },[])
     return (
+        <>
+
+            <img src={sliderData.image} height="300" width="500"/>
+        <div className='imageThumbnail'>
+                {imgs?.map((item,index) => (
+                <>
+                    <img key={index} src={item.image} onClick={() => handleClick(index)} height="200" />
+                </>
+                ))}
+        </div>
+        </>
         
-        getData?.map((item,index) => (
-            <>
-                <div className="data" key={index}>
-                    <h1>Data from Api {index + 1}</h1>
-                    <img src={item.avatar}/>
-                    <h3>Personal Information</h3>
-                    <ul>
-                        <li>Usename: {item.username}</li>
-                        <li>First Name: {item.first_name}</li>
-                        <li>Last Name: {item.last_name}</li>
-                        <li> Gender: {item.gender}</li>
-                        <li>Phone Number: {item.phone_number}</li>
-                    </ul>
-                    <h3>Address:</h3>
-                    <ul>
-                        <li>Street: {item.address.street_address}</li>
-                        <li>City: {item.address.city}</li>
-                        <li>State: {item.address.state}</li>
-                        <li>Country {item.address.country}</li>
-                        <li>Zip Code: {item.address.zip_code}</li>
-                    </ul>
-                </div> 
-            </>
-        ))
         
     )
 }
