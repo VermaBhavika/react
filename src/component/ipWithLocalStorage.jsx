@@ -1,19 +1,25 @@
-import { React, useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
+
 export function IpWithLocalStorage() {
-    const [count, setCount] = useState();
-    const [ip, setIp] = useState();
-    const [newCount, setNewCount] = useState(0);
-    const fetchIp = () => {
-        return fetch('https://ipapi.co/json/')
+
+    const [ip, setIP] = useState();
+    const [newCount, setNewCount] = useState(null);
+    const checkItem = (localStorage.getItem('IP') !== null)
+    const [dataValue, setDataValue] = useState()
+
+    const fetchData = async () => {
+        const getResponse = await fetch(`https://api.countapi.xyz/get/reactjs.org/c3da476f-a9cd-401e-a932-9f2533d3fde9`)
+        // .then(function (response) {
+        //     return response.text();
+        // })
             .then((response) => response.json())
             .then((data) => {
-                setIp(data.ip)
+                console.log(data.value)
+                return setDataValue(data.value)
             })
-    }
-    const fetchCount = async () => {
-        const getResponse = await fetch(`https://api.countapi.xyz/get/google.com/dea111ed-fea4-4552-a450-5278c9695a53`)
-        const response = await fetch(`https://api.countapi.xyz/set/google.com/dea111ed-fea4-4552-a450-5278c9695a53?value=${newCount}`)
-        const hitResponse = await fetch(`https://api.countapi.xyz/hit/google.com/dea111ed-fea4-4552-a450-5278c9695a53`)
+        console.log(dataValue)
+        const response = await fetch(`https://api.countapi.xyz/set/reactjs.org/c3da476f-a9cd-401e-a932-9f2533d3fde9?value=${dataValue}`)
+        const hitResponse = await fetch(`https://api.countapi.xyz/hit/reactjs.org/c3da476f-a9cd-401e-a932-9f2533d3fde9`)
         // console.log(response.value)
         if (!hitResponse.ok) {
             throw new Error('count is not there')
@@ -23,30 +29,38 @@ export function IpWithLocalStorage() {
         }
 
     }
-    const checkItem = (localStorage.getItem('ip') !== null)
-    // const local = localStorage.setItem("ip", ip);
-    const localget = localStorage.getItem("ip");
-    console.log(checkItem)
+
+    const fetchIp = () => {
+        return fetch("https://ipapi.co/json")
+            .then((response) => response.json())
+            .then((data) => {
+                setIP(data.ip)
+            })
+    }
     useEffect(() => {
-        fetchIp();
-        fetchCount()
+        
+        fetchData()
             .then((res) => {
                 setNewCount(res.value)
             })
             .catch((e) => {
                 console.log(e.message)
             })
-        // if(checkItem == false){
-        //     localStorage.setItem("ip", ip);
-        //     setNewCount(newCount + 1)
-        // }
+        fetchIp();
+
     }, [])
-    console.log(newCount)
+
+    localStorage.setItem("IP", ip);
 
     return (
         <>
-            <h3>Count: {newCount}</h3>
-            <h3>IP Address: {ip}</h3>
+            <h1>Count: {newCount}</h1>
+            <h2>Ip: {ip}</h2>
         </>
-    )
-}
+    );
+
+};
+
+
+
+
