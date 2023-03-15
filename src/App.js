@@ -1,11 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
-import { IpWithLocalStorage } from './component/ipWithLocalStorage';
+import { MapFunction } from './component/mapFunction';
 
 function App() {
   return (
     <div className="App">
-      <IpWithLocalStorage/>
+      <MapFunction/>
     </div>
   );
 }
