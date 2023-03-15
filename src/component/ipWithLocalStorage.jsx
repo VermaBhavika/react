@@ -12,14 +12,14 @@ export function IpWithLocalStorage() {
     }
     const fetchCount = async () => {
         const getResponse = await fetch(`https://api.countapi.xyz/get/google.com/dea111ed-fea4-4552-a450-5278c9695a53`)
-        // const response = await fetch(`https://api.countapi.xyz/set/google.com/dea111ed-fea4-4552-a450-5278c9695a53?value=${newCount}`)
+        const response = await fetch(`https://api.countapi.xyz/set/google.com/dea111ed-fea4-4552-a450-5278c9695a53?value=${newCount}`)
         const hitResponse = await fetch(`https://api.countapi.xyz/hit/google.com/dea111ed-fea4-4552-a450-5278c9695a53`)
         // console.log(response.value)
         if (!hitResponse.ok) {
             throw new Error('count is not there')
         }
         else {
-            return hitResponse.json() 
+            return hitResponse.json()
         }
 
     }
