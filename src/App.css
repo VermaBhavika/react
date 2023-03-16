@@ -25,7 +25,16 @@
 .App-link {
   color: #61dafb;
 }
-
+button.slick-arrow {
+  background: #000;
+    border-radius: 20px;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus{
+  background: #000 !important
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,4 +42,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+.slick-slider.slider.slick-initialized {
+  width: 50%;
+  margin: 0 auto;
 }

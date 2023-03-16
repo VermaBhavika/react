@@ -1,36 +1,38 @@
-import React, { Component } from "react";
+import {React, useEffect, useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-export function SlickSlider() {
+export function SlickSlider(props) {
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1,
-        arrows: true
+        arrows: true,
+        autoplay: true,
+        autoplaySpeed: 2000
     };
+    const [getData, setGetData] = useState()
+    const fetchData = () => {
+        return fetch('https://random-data-api.com/api/v2/users?size=5&is_xml=true')
+            .then((response) => response.json())
+            .then((data) => {
+                setGetData(data)
+            })
+    }
+    console.log(getData)
+    useEffect(() => {
+        fetchData()
+    }, [])
     return (
-        <Slider {...settings}>
-            <div>
-                <h3>1</h3> 
-            </div>
-            <div>
-                <h3>2</h3>
-            </div>
-            <div>
-                <h3>3</h3>
-            </div>
-            <div>
-                <h3>4</h3>
-            </div>
-            <div>
-                <h3>5</h3>
-            </div>
-            <div>
-                <h3>6</h3>
-            </div>
+        <Slider {...settings} className='slider'>
+            {getData?.map((item, index) => (
+            
+                    <img src={item.avatar}  height="300" width="100" key={index}/>
+            
+            ))}
+            
         </Slider>
     );
 }
