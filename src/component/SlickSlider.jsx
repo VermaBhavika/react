@@ -27,10 +27,8 @@ export function SlickSlider(props) {
     }, [])
     return (
         <Slider {...settings} className='slider'>
-            {getData?.map((item, index) => (
-            
-                    <img src={item.avatar}  height="300" width="100" key={index}/>
-            
+            {getData?.map((item, index) => (            
+                <img src={item?.avatar}  height="300" width="100" key={index}/>
             ))}
             
         </Slider>
