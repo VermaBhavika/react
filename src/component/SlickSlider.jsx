@@ -7,11 +7,9 @@ export function SlickSlider(props) {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        arrows: true,
-        autoplay: true,
-        autoplaySpeed: 2000
+        arrows: true
     };
     const [getData, setGetData] = useState()
     const fetchData = () => {
@@ -26,9 +24,10 @@ export function SlickSlider(props) {
         fetchData()
     }, [])
     return (
+        <h1>Slick Slider</h1>,
         <Slider {...settings} className='slider'>
             {getData?.map((item, index) => (            
-                <img src={item?.avatar}  height="300" width="100" key={index}/>
+                <img src={item?.avatar}  height="300" width="100" key={index} alt="slider"/>
             ))}
             
         </Slider>
