@@ -34,3 +34,12 @@
     transform: rotate(360deg);
   }
 }
+.dataTable{
+  width:50%;
+  margin: 0 auto;  
+  text-align: center;
+  margin-bottom: 40px;
+}
+.heading{
+  text-align: center;
+}
