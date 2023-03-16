@@ -17,7 +17,7 @@ export function MainLayout () {
         
         getData?.map((item,index) => (
         
-                <PreviewData name={item.username} firstName={item.first_name} lastName={item.last_name} gender={item.gender} phoneNumber={item.phone_number} image={item.avatar} i={index}/>
+                <PreviewData data={item} i={index}/>
             
         ))
         
