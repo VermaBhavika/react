@@ -1,6 +1,5 @@
 import React from "react";
 export function SliderButton({ direction, moveSlide }) {
-    console.log(direction, moveSlide);
 
     return (
         <button onClick={moveSlide} className={direction === "next" ? "btn-slide next" : "btn-slide prev"}>

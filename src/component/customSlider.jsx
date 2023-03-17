@@ -31,7 +31,7 @@ export  function CustomSlider() {
 
     useEffect(() => {
        fetchData() 
-    },[])
+    })
 
     return (   
         <h1>Custom Slider</h1>,
