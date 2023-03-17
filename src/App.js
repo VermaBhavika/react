@@ -1,10 +1,10 @@
 // import logo from './logo.svg';
 import './App.css';
-import { MainLayout } from './component/mainLayout';
+import { CustomSlider } from './component/customSlider';
 function App() {
   return (
     <div className="App">
-      <MainLayout />
+      <CustomSlider/>
     </div>
   );
 }
